@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ec3b098fab1cf4baae66971b886d72, type: 3}
+  m_Name: Gerald
+  m_EditorClassIdentifier: 
+  _unitName: Gerald
+  _cardImage: {fileID: 21300000, guid: fbe019a8801867e498ff358a651ad174, type: 3}
+  _counterMaterial: {fileID: 2100000, guid: 11cc38dee89e9ea4aaeabd2c87463c30, type: 2}
+  _effectActivationCondition: 1
+  _effectDoesTarget: 1
+  _effect: {fileID: 11400000, guid: d1d01c6708ae0744abaca0dede3a902d, type: 2}
+  _effectText: 
+  _atk: 5
+  _def: 1
+  _cost: 3
