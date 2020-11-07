@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7494806173992464576}
   - component: {fileID: 7494806173992464577}
+  - component: {fileID: 834750531}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -43,3 +44,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5268cf4cef46393409e9f85688af29d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectIsTargeting: 0
+  counterMask:
+    serializedVersion: 2
+    m_Bits: 2048
+--- !u!114 &834750531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7494806173992464582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d13d7eae7270094b80afc7ff6084473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleButton: {fileID: 0}
+  startingHandSize: 5

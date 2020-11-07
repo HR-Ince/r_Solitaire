@@ -94,6 +94,6 @@ public class UnitDisplay : MonoBehaviour
 
     public void DisplayDetail()
     {
-        print(effectText);
+
     }
 }

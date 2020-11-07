@@ -36,6 +36,7 @@ public class BoardManager : MonoBehaviour
 
         return countersOnBoard;
     }
+
     public void AddCounterToMain(UnitCounter counter)
     {
         CleanCounter(counter);
@@ -50,6 +51,11 @@ public class BoardManager : MonoBehaviour
         countersAdvanced.Add(counter);
         counter.transform.localPosition = advanceBasePos;
         ArrangeAllCounters();
+    }
+
+    public bool HasCountersAdvanced()
+    {
+        return countersAdvanced.Count > 0;
     }
 
     public void AddCounterToWithdrawn(UnitCounter counter)
@@ -78,13 +84,17 @@ public class BoardManager : MonoBehaviour
             return;
         }
     }
+    public bool CounterIsInMain(UnitCounter counter)
+    {
+        return countersInMain.Contains(counter);
+    }
 
-    public bool IsAdvanced(UnitCounter counter)
+    public bool CounterIsAdvanced(UnitCounter counter)
     {
         return countersAdvanced.Contains(counter);
     }
 
-    public bool IsWithdrawn(UnitCounter counter)
+    public bool CounterIsWithdrawn(UnitCounter counter)
     {
         return countersWithdrawn.Contains(counter);
     }

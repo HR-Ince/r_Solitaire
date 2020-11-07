@@ -455,6 +455,7 @@ MonoBehaviour:
   counterMask:
     serializedVersion: 2
     m_Bits: 2048
+  retreatMark: {fileID: 0}
 --- !u!114 &226228100723203209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,6 +471,7 @@ MonoBehaviour:
   isCard: 0
   atkText: {fileID: 8272446038546981716}
   defText: {fileID: 5181797700431838848}
+  effectActivationButton: {fileID: 0}
   nameText: {fileID: 0}
   costText: {fileID: 0}
   baseColour: {r: 0.9622642, g: 0.9622642, b: 0.9622642, a: 1}

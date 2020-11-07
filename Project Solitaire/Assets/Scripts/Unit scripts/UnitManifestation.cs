@@ -44,7 +44,6 @@ public class UnitManifestation : MonoBehaviour
 
     protected void OnMouseDown()
     {
-        if (!player.IsMyTurn) { return; }
         display.DisplayDetail();
         if (HasEffectOfType(SO_Unit.EffectActivationType.OnActivation))
         {

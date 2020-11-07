@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class UnitCounter : UnitManifestation
 {
     private bool isTargeting;
-    private bool hasEffect = false;
+    private bool hasMoved = false;
 
     private BattleManager battleManager;
 
@@ -17,11 +17,6 @@ public class UnitCounter : UnitManifestation
         player = GetComponentInParent<PlayerController>();
 
         isCard = false;
-
-        if(Unit.Effect != null)
-        {
-            hasEffect = true;
-        }
         
         CurrentAtk = Unit.Atk;
         CurrentDef = Unit.Def;
@@ -34,6 +29,15 @@ public class UnitCounter : UnitManifestation
         if (HasEffectOfType(SO_Unit.EffectActivationType.OnActivation))
         {
             player.Display.HideEffectActivationButton();
+        }
+    }
+
+    public void ResetForTurn()
+    {
+        hasMoved = false;
+        if (player.Board.CounterIsAdvanced(this))
+        {
+            player.Board.AddCounterToMain(this);
         }
     }
 
@@ -67,8 +71,7 @@ public class UnitCounter : UnitManifestation
 
     private void OnMouseDrag()
     {
-        if (!player.IsMyTurn) { return; }
-        if (!player.Board.IsWithdrawn(this))
+        if (!player.Board.CounterIsWithdrawn(this))
         {
             isTargeting = true;
         }
@@ -77,35 +80,56 @@ public class UnitCounter : UnitManifestation
     private void OnMouseUp()
     {
         player.Display.HideEffectActivationButton();
-        if (!player.IsMyTurn) { return; }
         if (isTargeting)
+            MoveCounter();
+    }
+
+    private void MoveCounter()
+    {
+        if (hasMoved) { return; }
+
+        Physics.Raycast(player.Cam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, Mathf.Infinity);
+        PlayerController objectHitOwner = hit.transform.GetComponentInParent<PlayerController>();
+
+        Vector3 toHit = hit.point - transform.position;
+        float angleToHit = Vector3.SignedAngle(Vector3.forward, toHit, Vector3.up);
+
+        if (player.TurnPhase == TurnManager.TurnPhase.Main1
+            || player.TurnPhase == TurnManager.TurnPhase.Main2)
         {
-            Physics.Raycast(player.Cam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, Mathf.Infinity);
-            PlayerController objectHitOwner = hit.transform.GetComponentInParent<PlayerController>();
-
-            if(Mathf.Abs(hit.point.z) > Mathf.Abs(transform.position.z))
+            if (angleToHit < -90 || angleToHit > 90)
             {
-                if (battleManager.DoesAttackersContain(this)) { battleManager.RemoveFromAttackers(this); }
-                player.Board.AddCounterToMain(this);
+                if (player.Board.CounterIsInMain(this))
+                {
+                    player.Board.AddCounterToWithdrawn(this);
+                    hasMoved = true;
+                }
             }
-            else if (objectHitOwner == player.Opponent)
+        }
+        else if(player.TurnPhase == TurnManager.TurnPhase.Battle)
+        {
+            if (objectHitOwner == player.Opponent)
             {
-                if (player.Board.IsAdvanced(this)) { return; }
-                player.Board.AddCounterToAdvanced(this);
-
                 if (hit.transform.TryGetComponent<UnitCounter>(out UnitCounter enemyCounter))
                 {
-                    if (player.Opponent.Board.IsAdvanced(enemyCounter))
+                    if (player.Opponent.Board.CounterIsAdvanced(enemyCounter))
                     {
                         battleManager.Battle(this, enemyCounter);
+                        player.Board.AddCounterToAdvanced(this);
                     }
+                }
+                else if(!player.Opponent.Board.HasCountersAdvanced())
+                {
+                    battleManager.AddToDirectAttackers(this);
+                    player.Board.AddCounterToAdvanced(this);
                 }
                 else
                 {
-                    battleManager.AddToDirectAttackers(this);
+                    return;
                 }
             }
-            isTargeting = false;
+        
         }
+        isTargeting = false;
     }
 }

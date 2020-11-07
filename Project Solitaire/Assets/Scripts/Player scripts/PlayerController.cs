@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    public bool IsMyTurn { get; private set; }
+    public bool commanderPlayedThisTurn = false;
+    public TurnManager.TurnPhase TurnPhase { get; private set; }
 
     [SerializeField] int LifepointTotal = 20;
 
@@ -54,6 +55,23 @@ public class PlayerController : MonoBehaviour
                 Opponent = player;
             }
         }
+    }
+
+    public void SetTurnPhase(TurnManager.TurnPhase phase)
+    {
+        TurnPhase = phase;
+    }
+
+    public void ResetForTurn()
+    {
+        // Counter resets
+        foreach(UnitCounter counter in Board.GetCountersOnBoard())
+        {
+            counter.ResetForTurn();
+        }
+
+        // Card resets
+        commanderPlayedThisTurn = false;
     }
 
     public void DrawCard()

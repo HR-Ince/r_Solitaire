@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class Card3D : UnitManifestation
 {
@@ -34,8 +31,9 @@ public class Card3D : UnitManifestation
 
     public void OnMouseDrag()
     {
+        if(player.TurnPhase != TurnManager.TurnPhase.Main1
+            && player.TurnPhase != TurnManager.TurnPhase.Main2) { return; }
         player.Display.HideEffectActivationButton();
-        if (!player.IsMyTurn) { return; }
         if (Unit is BasicUnit)
         {
             BasicUnit basicUnit = (BasicUnit)Unit;
@@ -46,6 +44,7 @@ public class Card3D : UnitManifestation
         }
         else if(Unit is CommanderUnit)
         {
+            if (player.commanderPlayedThisTurn == false)
             DragCard();
         }
         
@@ -79,7 +78,6 @@ public class Card3D : UnitManifestation
 
     private void OnMouseUp()
     {
-        if (!player.IsMyTurn) { return; }
         if (isBeingDragged)
         {
             if(!Physics.Raycast(player.Cam.ScreenPointToRay(Input.mousePosition), Mathf.Infinity, boardMask))
@@ -90,6 +88,7 @@ public class Card3D : UnitManifestation
             {
                 objHandler.CreateCounter(player, Unit);
                 if(Unit is BasicUnit basicUnit) { player.SpendMana(basicUnit.cost); }
+                else if(Unit is CommanderUnit) { player.commanderPlayedThisTurn = true; }
                 Destroy(this.gameObject);
             }
         }
