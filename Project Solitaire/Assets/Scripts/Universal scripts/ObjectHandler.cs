@@ -8,13 +8,13 @@ public class ObjectHandler : MonoBehaviour
     [SerializeField] Card3D cardBase = null;
     [SerializeField] UnitCounter counterBase = null;
 
-    public void CreateCard(PlayerController player, SO_Unit unit)
+    public void CreateCard(PlayerController player, Unit unit)
     {
         Card3D card = Instantiate(cardBase, player.Hand.transform);
         card.CreateFromUnit(unit);
         player.Hand.AddCardToHand(card);
     }
-    public void CreateCounter(PlayerController player, SO_Unit unit)
+    public void CreateCounter(PlayerController player, Unit unit)
     {
         UnitCounter counter = Instantiate(counterBase, player.Board.transform);
         counter.CreateFromUnit(unit);

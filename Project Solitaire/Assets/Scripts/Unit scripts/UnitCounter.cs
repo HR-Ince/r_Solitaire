@@ -19,14 +19,14 @@ public class UnitCounter : UnitManifestation
         isCard = false;
         
         CurrentAtk = Unit.Atk;
-        CurrentDef = Unit.Def;
+        CurrentDef = Unit.Health;
     }
 
     public void ActivateEffect()
     {
         StartCoroutine(EffectTargeting());
         Unit.Effect.ActivateEffect();
-        if (HasEffectOfType(SO_Unit.EffectActivationType.OnActivation))
+        if (HasEffectOfType(Unit.EffectActivationType.OnActivation))
         {
             player.Display.HideEffectActivationButton();
         }
@@ -56,12 +56,6 @@ public class UnitCounter : UnitManifestation
             Unit.Effect.target = this;
         }
     }
-
-    public void TakeDamage(int damage)
-    {
-        ModifyDef(-damage);
-    }
-
     public void DeclareDead()
     {
         print(Unit.name + " has died.");

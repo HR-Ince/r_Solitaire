@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Commander", menuName = "Units/Commander")]
-public class CommanderUnit : SO_Unit
+public class CommanderUnit : Unit
 {
     [SerializeField] private int _rank = 0;
     public int rank { get { return _rank; } private set { _rank = value; } }

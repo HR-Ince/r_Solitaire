@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GraveyardManager : MonoBehaviour
 {
-    public List<SO_Unit> deadThings = new List<SO_Unit>();
+    public List<Unit> deadThings = new List<Unit>();
 
     private ObjectHandler objectHandler;
 
@@ -22,22 +22,22 @@ public class GraveyardManager : MonoBehaviour
         hand = player.Hand;
     }
 
-    public void AddToGraveyard(SO_Unit unit)
+    public void AddToGraveyard(Unit unit)
     {
         deadThings.Add(unit);
     }
 
-    public bool isDead(SO_Unit unit)
+    public bool isDead(Unit unit)
     {
         return deadThings.Contains(unit);
     }
 
-    public void ResurrectAsCard(SO_Unit unit)
+    public void ResurrectAsCard(Unit unit)
     {
         objectHandler.CreateCard(player, unit);
     }
 
-    public void ResurrectAsCounter(SO_Unit unit)
+    public void ResurrectAsCounter(Unit unit)
     {
         objectHandler.CreateCounter(player, unit);
     }

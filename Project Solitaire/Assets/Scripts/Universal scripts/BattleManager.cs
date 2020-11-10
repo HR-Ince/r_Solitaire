@@ -105,11 +105,11 @@ public class BattleManager : MonoBehaviour
         {
             foreach(UnitCounter attacker in battle.attackingCounters)
             {
-                if (attacker.HasEffectOfType(SO_Unit.EffectActivationType.OnAttackingUnit))
+                if (attacker.HasEffectOfType(Unit.EffectActivationType.OnAttackingUnit))
                 {
                     attacker.ActivateEffect();
                 }
-                battle.defendingCounters[0].TakeDamage(attacker.CurrentAtk);
+                //battle.defendingCounters[0].TakeDamage(attacker.CurrentAtk);
                 if(battle.attackingCounters.Count > 1)
                 {
                     print("Choose your victim.");
@@ -118,7 +118,7 @@ public class BattleManager : MonoBehaviour
                 {
                     foreach(UnitCounter defender in battle.defendingCounters)
                     {
-                        attacker.TakeDamage(defender.CurrentAtk);
+                        //attacker.TakeDamage(defender.CurrentAtk);
                         StartCoroutine(CheckForSignsOfLife(defender));
                         StartCoroutine(CheckForSignsOfLife(attacker));
                     }
@@ -128,7 +128,7 @@ public class BattleManager : MonoBehaviour
         
         foreach(UnitCounter attacker in directAttackers)
         {
-            if (attacker.HasEffectOfType(SO_Unit.EffectActivationType.OnAttackingDirectly))
+            if (attacker.HasEffectOfType(Unit.EffectActivationType.OnAttackingDirectly))
             {
                 attacker.ActivateEffect();
             }

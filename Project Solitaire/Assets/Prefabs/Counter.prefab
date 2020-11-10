@@ -350,8 +350,11 @@ GameObject:
   - component: {fileID: 6795187736618487511}
   - component: {fileID: 6795187736618487512}
   - component: {fileID: 6795187736618487513}
-  - component: {fileID: 6795187736618487514}
-  - component: {fileID: 226228100723203209}
+  - component: {fileID: 9075217894783599069}
+  - component: {fileID: 6385563712536609280}
+  - component: {fileID: 4101460406122457323}
+  - component: {fileID: -9191590463884919661}
+  - component: {fileID: 1314725004481085723}
   m_Layer: 11
   m_Name: Counter
   m_TagString: Untagged
@@ -437,7 +440,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &6795187736618487514
+--- !u!114 &9075217894783599069
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -446,34 +449,112 @@ MonoBehaviour:
   m_GameObject: {fileID: 6795187736618487515}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1870e280f680b1548bbdc44b45f4fd7d, type: 3}
+  m_Script: {fileID: 11500000, guid: 55342e063e049404e80940f808bbf5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardMask:
-    serializedVersion: 2
-    m_Bits: 256
-  counterMask:
-    serializedVersion: 2
-    m_Bits: 2048
-  retreatMark: {fileID: 0}
---- !u!114 &226228100723203209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6795187736618487515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4af3063adf27c5346924a6737ef42d38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCard: 0
+  portrait: {fileID: 0}
+  healthText: {fileID: 5181797700431838848}
   atkText: {fileID: 8272446038546981716}
-  defText: {fileID: 5181797700431838848}
-  effectActivationButton: {fileID: 0}
   nameText: {fileID: 0}
   costText: {fileID: 0}
-  baseColour: {r: 0.9622642, g: 0.9622642, b: 0.9622642, a: 1}
-  increasedColour: {r: 0, g: 1, b: 0.8525934, a: 1}
-  decreasedColour: {r: 1, g: 0.4842435, b: 0, a: 1}
+  manaAvailableText: {fileID: 0}
+  manaTotalText: {fileID: 0}
+--- !u!114 &6385563712536609280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6795187736618487515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d4a09adbe16d443abfb846f7286582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitHolder: {fileID: -9191590463884919661}
+  display: {fileID: 9075217894783599069}
+  dynamics: {fileID: 4101460406122457323}
+--- !u!114 &4101460406122457323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6795187736618487515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1a1d3b10e3a54b42b51ef65439e9cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  display: {fileID: 0}
+  baseHealth: 0
+  baseAtk: 0
+  baseCost: 0
+  baseMana: 0
+--- !u!114 &-9191590463884919661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6795187736618487515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 541fe5553e53efb4eba5a24195f8e450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unit: {fileID: 11400000, guid: 518e2525421412e4cb5ee66872fe76ed, type: 2}
+--- !u!114 &1314725004481085723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6795187736618487515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 990c3335570e8d14a9593eef36effec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WhenPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnitHolder, Assembly-CSharp
+        m_MethodName: SetUnit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  WhenReleased:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

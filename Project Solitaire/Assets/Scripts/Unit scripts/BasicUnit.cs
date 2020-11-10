@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Basic Unit", menuName = "Units/Basic Unit")]
-public class BasicUnit : SO_Unit
+public class BasicUnit : Unit
 {
     [SerializeField] private int _cost = 0;
-    public int cost { get { return _cost; } private set { _cost = value; } }
+    public int Cost { get { return _cost; } private set { _cost = value; } }
 }

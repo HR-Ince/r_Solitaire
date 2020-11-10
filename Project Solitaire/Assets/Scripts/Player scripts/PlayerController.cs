@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] int LifepointTotal = 20;
 
-    [SerializeField] private SO_Unit[] _deck = null;
-    public SO_Unit[] Deck
+    [SerializeField] private Unit[] _deck = null;
+    public Unit[] Deck
     {
         get { return _deck; }
         private set { _deck = value; }

@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ec3b098fab1cf4baae66971b886d72, type: 3}
   m_Name: Reginald
   m_EditorClassIdentifier: 
-  _unitName: Reginald
-  _cardImage: {fileID: 0}
+  portrait: {fileID: 21300000, guid: fbe019a8801867e498ff358a651ad174, type: 3}
+  name: Reginald
   _counterMaterial: {fileID: 2100000, guid: 78467e7a359223f4784e356aa9738029, type: 2}
   _effectActivationCondition: 4
   _effectDoesTarget: 0
   _effect: {fileID: 11400000, guid: d1d01c6708ae0744abaca0dede3a902d, type: 2}
   _effectText: 
   _atk: 3
-  _def: 6
+  _health: 0
   _cost: 5

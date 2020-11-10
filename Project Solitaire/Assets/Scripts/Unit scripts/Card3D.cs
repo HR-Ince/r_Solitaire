@@ -24,7 +24,7 @@ public class Card3D : UnitManifestation
         isCard = true;
 
         CurrentAtk = Unit.Atk;
-        CurrentDef = Unit.Def;
+        CurrentDef = Unit.Health;
 
         startAngleX = transform.rotation.eulerAngles.x;
     }
@@ -37,7 +37,7 @@ public class Card3D : UnitManifestation
         if (Unit is BasicUnit)
         {
             BasicUnit basicUnit = (BasicUnit)Unit;
-            if (player.ManaCostIsAffordable(basicUnit.cost))
+            if (player.ManaCostIsAffordable(basicUnit.Cost))
             {
                 DragCard();
             }
@@ -87,7 +87,7 @@ public class Card3D : UnitManifestation
             else
             {
                 objHandler.CreateCounter(player, Unit);
-                if(Unit is BasicUnit basicUnit) { player.SpendMana(basicUnit.cost); }
+                if(Unit is BasicUnit basicUnit) { player.SpendMana(basicUnit.Cost); }
                 else if(Unit is CommanderUnit) { player.commanderPlayedThisTurn = true; }
                 Destroy(this.gameObject);
             }
