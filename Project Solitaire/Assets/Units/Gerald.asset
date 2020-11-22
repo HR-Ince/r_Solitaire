@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Gerald
   m_EditorClassIdentifier: 
   portrait: {fileID: 0}
-  name: Gerald
-  _counterMaterial: {fileID: 2100000, guid: 11cc38dee89e9ea4aaeabd2c87463c30, type: 2}
-  _effectActivationCondition: 1
-  _effectDoesTarget: 1
-  _effect: {fileID: 11400000, guid: d1d01c6708ae0744abaca0dede3a902d, type: 2}
-  _effectText: 
-  _atk: 5
-  _health: 0
+  health: 4
+  unitName: Gerald
+  counterMaterial: {fileID: 0}
+  effectActivationCondition: 0
+  effectDoesTarget: 0
+  effect: {fileID: 0}
+  effectText: 
+  atk: 3
   _cost: 3

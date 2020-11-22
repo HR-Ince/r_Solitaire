@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Good King Roy
   m_EditorClassIdentifier: 
   portrait: {fileID: 0}
-  name: Good King Roy
-  _counterMaterial: {fileID: 2100000, guid: 7c4011c941845964f86dd828337f1a54, type: 2}
-  _effectActivationCondition: 0
-  _effectDoesTarget: 0
-  _effect: {fileID: 0}
-  _effectText: 
-  _atk: 2
-  _health: 0
+  health: 6
+  unitName: Good King Roy
+  counterMaterial: {fileID: 0}
+  effectActivationCondition: 0
+  effectDoesTarget: 0
+  effect: {fileID: 0}
+  effectText: 
+  atk: 2
   _rank: 0
   _manaContribution: 4

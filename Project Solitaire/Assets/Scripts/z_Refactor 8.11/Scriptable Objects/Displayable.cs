@@ -6,7 +6,7 @@ public class Displayable : ScriptableObject
 {
     public Sprite portrait;
 
-    public new string name;
+    public int health;
 }
 
 

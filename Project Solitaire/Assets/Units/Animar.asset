@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ec3b098fab1cf4baae66971b886d72, type: 3}
+  m_Name: Animar
+  m_EditorClassIdentifier: 
+  portrait: {fileID: 21300000, guid: 244b981654b164040b5bd38002d02823, type: 3}
+  health: 6
+  unitName: Animar
+  counterMaterial: {fileID: 0}
+  effectActivationCondition: 0
+  effectDoesTarget: 0
+  effect: {fileID: 0}
+  effectText: 
+  atk: 6
+  _cost: 9
