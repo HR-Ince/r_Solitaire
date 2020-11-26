@@ -18,7 +18,7 @@ MonoBehaviour:
   - Mortal
   - Faithful
   - Fanatic
-  cardEffect: {fileID: 0}
-  cost: 1
+  manaTypes: []
+  manaCosts: 01000000
   atk: 1
   def: 2

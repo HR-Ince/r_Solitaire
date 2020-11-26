@@ -236,6 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eda36e91b8291df42b4b82829b059707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardData: {fileID: 11400000, guid: 1d054e51622646b44b280b1ac0363d07, type: 2}
   objToCreate: {fileID: 3061859529876312352, guid: e23e1e0bac816ea498cc5fcb79d9ff3d, type: 3}
   is2D: 1
 --- !u!114 &643349805
@@ -253,6 +254,18 @@ MonoBehaviour:
   dPressed:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 5331142518287479089}
+        m_TargetAssemblyTypeName: DeckManager, Assembly-CSharp
+        m_MethodName: DrawCard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 643349804}
         m_TargetAssemblyTypeName: CreateFromCardData, Assembly-CSharp
         m_MethodName: Create
@@ -379,36 +392,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6501935216865941215, guid: 3f609792bbacd5b41955c798d49efc96, type: 3}
   m_PrefabInstance: {fileID: 6501935217734596132}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1600189788
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1600189789}
-  m_Layer: 0
-  m_Name: HandScriptHolder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1600189789
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1600189788}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 247.5, z: -0.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1837862879
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,6 +850,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeckScriptHolder
       objectReference: {fileID: 0}
+    - target: {fileID: 5331142518151699564, guid: 3cb88a5adb29ca342817f6f7ac4b7a47, type: 3}
+      propertyPath: cardData
+      value: 
+      objectReference: {fileID: 11400000, guid: 1d054e51622646b44b280b1ac0363d07, type: 2}
     - target: {fileID: 5331142518151699565, guid: 3cb88a5adb29ca342817f6f7ac4b7a47, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -913,6 +900,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cb88a5adb29ca342817f6f7ac4b7a47, type: 3}
+--- !u!114 &5331142518287479089 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5331142518151699564, guid: 3cb88a5adb29ca342817f6f7ac4b7a47, type: 3}
+  m_PrefabInstance: {fileID: 5331142518287479088}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71bb5d3250649bb44b01eea41bf394f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6501935217734596132
 PrefabInstance:
   m_ObjectHideFlags: 0

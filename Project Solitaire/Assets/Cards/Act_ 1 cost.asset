@@ -18,5 +18,5 @@ MonoBehaviour:
   - Act of Faith
   - 
   - Bloodletting
-  cardEffect: {fileID: 0}
-  cost: 1
+  manaTypes: []
+  manaCosts: 01000000
