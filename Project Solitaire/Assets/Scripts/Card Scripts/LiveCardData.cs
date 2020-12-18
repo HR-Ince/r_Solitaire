@@ -5,18 +5,29 @@ using UnityEngine.Events;
 
 public class LiveCardData : MonoBehaviour
 {
+    [SerializeField] LiveManaValues totalMana = null;
+    [SerializeField] CommandersOnField commanders = null;
+    [SerializeField] CardData testCard = null;
+    public UnityEvent OnValueChange;
+
+    public CardData Card { get; private set; }
     [Min(0)] private int currentAtk;
     public int CurrentAtk { get { return currentAtk; } }
     [Min(0)] private int currentDef;
     public int CurrentDef { get { return currentDef; } }
-    [Min(0)] private int currentCost;
-    public int CurrentCost { get { return currentCost; } }
     [Min(0)] private int currentRank;
     public int CurrentRank { get { return currentRank; } }
-    [Min(0)] private int currentContribution;
-    public int CurrentContribution { get { return currentContribution; } }
+    public ManaValueDictionary currentCost { get; private set; }
+    public ManaValueDictionary currentContribution { get; private set; }
+    
+    public bool IsPlayable { get; private set; }
 
-    public CardData Card { get; private set; }
+    private void Awake()
+    {
+        if (testCard != null)
+            Card = testCard;
+        AssignVariablesViaCast();
+    }
 
     public void SetCardData(CardData data)
     {
@@ -32,7 +43,7 @@ public class LiveCardData : MonoBehaviour
             currentContribution = commander.Contribution;
         }
         else if (Card is CardData_CostBased card)
-            currentCost = card.Cost;
+            currentCost = new ManaValueDictionary(card.manaCost);
 
         if (Card is CardData_Unit unit)
         {
@@ -44,25 +55,42 @@ public class LiveCardData : MonoBehaviour
     public void ModifyAtk(int amount)
     {
         currentAtk += amount;
+        if (OnValueChange != null)
+            OnValueChange.Invoke();
     }
 
     public void ModifyDef(int amount)
     {
         currentDef += amount;
+        if (OnValueChange != null)
+            OnValueChange.Invoke();
     }
 
-    public void ModifyCost(int amount)
+    public void ModifyCost(ManaType type, int amount)
     {
-        currentCost += amount;
+        currentCost.Add(type, amount);
+        if (OnValueChange != null)
+            OnValueChange.Invoke();
     }
 
-    public void ModifyRank(int amount)
+    public void GetIsCardPlayable()
     {
-        currentRank += amount;
-    }
-
-    public void ModifyContribution(int amount)
-    {
-        currentContribution += amount;
+        if (Card is CardData_CostBased)
+        {
+            foreach (ManaType type in currentCost.FirstValues)
+            {
+                if (currentCost[type] > totalMana.list[type])
+                    IsPlayable = false;
+                else
+                    IsPlayable = true;
+            }
+        }
+        else if(Card is CardData_Commander)
+        {
+            if (currentRank - 1 <= commanders.highestRank)
+                IsPlayable = true;
+            else
+                IsPlayable = false;
+        }
     }
 }

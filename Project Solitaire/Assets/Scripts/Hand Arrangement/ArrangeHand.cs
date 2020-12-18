@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class ArrangeHand : MonoBehaviour
 {
-    [SerializeField] protected PlayerHand hand;
+    [SerializeField] protected PlayerHand handDataList;
     [SerializeField] protected RectTransform handRectTransform;
 
     // To access dimensions

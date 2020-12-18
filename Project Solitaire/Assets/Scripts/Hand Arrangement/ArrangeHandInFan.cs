@@ -10,7 +10,7 @@ public class ArrangeHandInFan : ArrangeHand
 
     public override void ArrangeCards()
     {
-        int handSize = hand.list.Count;
+        int handSize = handDataList.list.Count;
 
         float rangeMid = handSize / 2f - 0.5f;
 
@@ -63,9 +63,9 @@ public class ArrangeHandInFan : ArrangeHand
             float zAngle = -(indexMidDiff * anglePerCard);
 
 
-            hand.list[i].transform.SetSiblingIndex(i);
+            handDataList.list[i].transform.SetSiblingIndex(i);
 
-            var rectTransform = hand.list[i].GetComponent<RectTransform>();
+            var rectTransform = handDataList.list[i].GetComponent<RectTransform>();
 
             rectTransform.anchoredPosition = handRectTransform.anchoredPosition + new Vector2(newX, newY);
             rectTransform.rotation = Quaternion.Euler(0f, 0f, zAngle);

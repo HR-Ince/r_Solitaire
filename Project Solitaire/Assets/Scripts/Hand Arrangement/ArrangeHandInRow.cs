@@ -7,7 +7,7 @@ public class ArrangeHandInRow : ArrangeHand
 {
     public override void ArrangeCards()
     {
-        int handSize = hand.list.Count;
+        int handSize = handDataList.list.Count;
 
         float rangeMid = handSize / 2f - 0.5f;
 
@@ -18,12 +18,11 @@ public class ArrangeHandInRow : ArrangeHand
         {
             for (int i = 0; i < handSize; i++)
             {
-                hand.list[i].transform.SetSiblingIndex(handSize - i);
-
-                var rectTransform = hand.list[i].GetComponent<RectTransform>();
+                handDataList.list[i].transform.SetSiblingIndex(i);
 
                 float newX = (i - rangeMid) * xCardSpacing;
 
+                var rectTransform = handDataList.list[i].GetComponent<RectTransform>();
                 rectTransform.anchoredPosition = handRectTransform.anchoredPosition + new Vector2(newX, 0f);
             }
         }
@@ -33,9 +32,9 @@ public class ArrangeHandInRow : ArrangeHand
 
             for (int i = 0; i < handSize; i++)
             {
-                hand.list[i].transform.SetSiblingIndex(handSize - i);
+                handDataList.list[i].transform.SetSiblingIndex(i);
 
-                var rectTransform = hand.list[i].GetComponent<RectTransform>();
+                var rectTransform = handDataList.list[i].GetComponent<RectTransform>();
 
                 float newX = (i - rangeMid) * constrainedSpacing;
 

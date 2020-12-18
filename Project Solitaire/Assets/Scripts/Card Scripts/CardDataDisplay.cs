@@ -6,104 +6,106 @@ using UnityEngine.UI;
 
 public class CardDataDisplay : MonoBehaviour
 {
-    [SerializeField] private TMP_Text nameText = null;
-    [SerializeField] private Image image = null;
-    [SerializeField] private TMP_Text typeText = null;
-    [SerializeField] private TMP_Text costText = null;
-    [SerializeField] private TMP_Text rankText = null;
-    [SerializeField] private TMP_Text contributionText = null;
-    [SerializeField] private TMP_Text descriptionText = null;
-    [SerializeField] private TMP_Text atkText = null;
-    [SerializeField] private TMP_Text defText = null;
-    
-    private CardData cardData;
-    private LiveCardData liveData;
+    [SerializeField] protected CardDisplayLibrary display;
+    protected CardData generics;
+    protected LiveCardData liveData;
 
     private void Start()
     {
         liveData = GetComponent<LiveCardData>();
-        cardData = liveData.Card;
+        generics = liveData.Card;
 
-        DisplayGenericData(cardData);
-
-        if (cardData is CardData_Commander)
-            DisplayCommanderData();
-        else if (cardData is CardData_Unit)
-            DisplayUnitData();
-        else if (cardData is CardData_CostBased)
-            DisplayCostBasedData();
+        DisplayData();
     }
 
-    private void DisplayGenericData(CardData card)
+    private void DisplayData()
     {
-        if(nameText != null)
-            nameText.text = card.CardName;
-        if(image != null)
-            image.sprite = card.CardImage;
-        if(typeText != null)
-        {
-            string type = cardData.CardTypes[0];
-            if (cardData.CardTypes[1] != null)
-                type += " " + cardData.CardTypes[1];
-            if (cardData.CardTypes[2] != null)
-                type += " -- " + cardData.CardTypes[2];
+        DisplayGenericData();
+        DisplayLiveData();
+    }
 
-            typeText.text = type;
-        }
-        if(descriptionText != null)
+    private void DisplayGenericData()
+    {
+        display.nameText.text = generics.CardName;
+        display.image.sprite = generics.CardImage;
+        if(display.typeText != null)
         {
-            //Description text setup goes here
+            string type = generics.CardTypes[0];
+            if (generics.CardTypes[1] != null)
+                type += " " + generics.CardTypes[1];
+            if (generics.CardTypes[2] != null)
+                type += " -- " + generics.CardTypes[2];
+
+            display.typeText.text = type;
         }
     }
 
-    private void DisplayCommanderData()
+    public void DisplayLiveData()
     {
-        if(contributionText != null)
-        {
-            int contribution = liveData.CurrentContribution;
-            contributionText.text = contribution.ToString();
-        }
-            
-        if(rankText != null)
-        {
-            int rank = liveData.CurrentRank;
-            rankText.text = rank.ToString();
-        }
-
-        atkText.enabled = false;
-            
+        if (generics is CardData_Commander commander)
+            DisplayCommanderData(commander);
+        else if (generics is CardData_CostBased costly)
+            DisplayCostBasedData(costly);
+        if (generics is CardData_Unit unit)
+            DisplayUnitData(unit);
     }
 
-    private void DisplayUnitData()
+    private void DisplayCommanderData(CardData_Commander card)
     {
-        if (costText != null)
+        if (display.contributionImages.Count < liveData.currentContribution.Count)
+        { Debug.LogError("Insufficient Contribution containers on card"); }
+        else
         {
-            int cost = liveData.CurrentCost;
-            costText.text = cost.ToString();
+            for (int i = 0; i < liveData.currentContribution.Count; i++)
+            {
+                display.contributionImages[i].gameObject.SetActive(true);
+                display.contributionImages[i].sprite = liveData.currentContribution.FirstValues[i].manaDepictionSprite;
+                display.contributionTexts[i].gameObject.SetActive(true);
+                display.contributionTexts[i].text = liveData.currentContribution.SecondValues[i].ToString();
+            }
         }
-        if (atkText != null)
+
+        if (display.rankText != null)
         {
-            int atk = liveData.CurrentAtk;
-            atkText.text = atk.ToString();
+            display.rankText.transform.parent.gameObject.SetActive(true);
+            display.rankText.gameObject.SetActive(true);
+            display.rankText.text = liveData.CurrentRank.ToString();
         }
-            
-        if(defText != null)
-        {
-            int def = liveData.CurrentDef;
-            defText.text = def.ToString();
-        }
-            
+
+        display.atkText.enabled = false;
+        display.defText.enabled = false;
     }
 
-    private void DisplayCostBasedData()
+    private void DisplayCostBasedData(CardData_CostBased card)
     {
-        if (costText != null)
+        if (display.costImages.Count < liveData.currentCost.Count || display.costTexts.Count < liveData.currentCost.Count)
+        { Debug.LogError("Insufficent containers for cost data on card"); }
+        else
         {
-            int cost = liveData.CurrentCost;
-            costText.text = cost.ToString();
-        }
 
-        atkText.enabled = false;
-        defText.enabled = false;
+            for (int i = 0; i < liveData.currentCost.Count; i++)
+            {
+                display.costImages[i].gameObject.SetActive(true);
+                display.costImages[i].sprite = liveData.currentCost.FirstValues[i].manaDepictionSprite;
+
+                display.costTexts[i].gameObject.SetActive(true);
+                display.costTexts[i].text = liveData.currentCost.SecondValues[i].ToString();
+            }
+        }
+    }
+
+    private void DisplayUnitData(CardData_Unit card)
+    {
+        if (display.atkText != null)
+        {
+            display.atkText.gameObject.SetActive(true);
+            display.atkText.text = liveData.CurrentAtk.ToString();
+        }
+            
+        if(display.defText != null)
+        {
+            display.defText.gameObject.SetActive(true);
+            display.defText.text = liveData.CurrentDef.ToString();
+        }
     }
 }

@@ -1,11 +1,17 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Mana Type", menuName = "Variable/Mana Type")]
 public class ManaType : ScriptableObject
 {
-    [SerializeField] Sprite sprite = null;
-    [Min(0)] public int amount = 0;
+    [SerializeField] private LiveManaValues manaList = null;
 
+    public Sprite manaDepictionSprite = null;
+    
     private void OnEnable()
-    { amount = 0; }
+    {
+        if(manaList != null && !manaList.list.Contains(this))
+            manaList.list.Add(this);
+    }
 }

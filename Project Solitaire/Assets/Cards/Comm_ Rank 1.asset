@@ -18,6 +18,9 @@ MonoBehaviour:
   - Mortal
   - Priest
   - Bloodletter
-  cardEffect: {fileID: 0}
   rank: 1
-  contribution: 2
+  contributionTypes:
+  - {fileID: 11400000, guid: 3fcbba8c940ee034b8b8c24d37966ac2, type: 2}
+  - {fileID: 11400000, guid: 2033a3de353aa654abee82d7f4436749, type: 2}
+  - {fileID: 11400000, guid: 4c3f2c1c29afdf146b33c9a77cf9a79d, type: 2}
+  contributionAmounts: 020000000100000001000000

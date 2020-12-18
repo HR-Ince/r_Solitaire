@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7f9e2d9420e8b64bb6c4e7720876000, type: 3}
   m_Name: Act_ 1 cost
   m_EditorClassIdentifier: 
-  cardName: A Handy Sample
-  cardImage: {fileID: 21300000, guid: a177120defcce58449f13e09b5d645a6, type: 3}
+  cardName: Not a sample
+  cardImage: {fileID: 21300000, guid: 244b981654b164040b5bd38002d02823, type: 3}
   cardTypes:
-  - Act of Faith
-  - 
-  - Bloodletting
-  manaTypes: []
-  manaCosts: 01000000
+  - Funky
+  - Spell
+  - Sample
+  costTypes:
+  - {fileID: 11400000, guid: 4c3f2c1c29afdf146b33c9a77cf9a79d, type: 2}
+  costAmounts: 01000000

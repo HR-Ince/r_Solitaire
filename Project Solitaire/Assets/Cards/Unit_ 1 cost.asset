@@ -18,7 +18,9 @@ MonoBehaviour:
   - Mortal
   - Faithful
   - Fanatic
-  manaTypes: []
-  manaCosts: 01000000
+  manaTypes:
+  - {fileID: 11400000, guid: 4c3f2c1c29afdf146b33c9a77cf9a79d, type: 2}
+  - {fileID: 11400000, guid: 14c0d5c0bb43d4f4d80693c13e84acb5, type: 2}
+  costAmounts: 0200000003000000
   atk: 1
   def: 2

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -6,23 +6,34 @@ using UnityEngine.Events;
 public class LivePlayerData : MonoBehaviour
 {
     [SerializeField] private PlayerData player = null;
-    [SerializeField] private List<ManaType> mana = new List<ManaType>();
-
-    public List<ManaType> Mana { get { return mana; } }
     public PlayerData Player { get { return player; } }
+    [SerializeField] LiveManaValues playerMana = null;
+    public ManaValueDictionary PlayerMana { get { return playerMana.list; } }
 
     [Min(0)] private int currentLifePoints;
     public int CurrentLifePoints { get { return currentLifePoints; } }
-    [Min(0)] private int currentMana;
-    public int CurrentMana { get { return currentMana; } }
-    [Min(0)] private int totalMana;
-    public int TotalMana { get { return totalMana; } }
+    public ManaType DominantMana { get; private set; }
 
     public UnityEvent OnValueChange;
 
     private void Awake()
     {
         currentLifePoints = player.LifePoints;
+
+        DominantMana = PlayerMana.GetFirstMana();
+    }
+
+    private void SetDominantMana()
+    {
+        int i = 0;
+        foreach(ManaType type in PlayerMana.FirstValues)
+        {
+            if (PlayerMana[type] > i)
+            {
+                DominantMana = type;
+                i = PlayerMana[type];
+            }
+        }
     }
 
     public void ModifyPlayerLifePoints(int amount)
@@ -32,15 +43,25 @@ public class LivePlayerData : MonoBehaviour
             OnValueChange.Invoke();
     }
 
-    public void ModifyPlayerMana(ManaType type, int amount)
+    public bool CardIsAffordable(ManaValueDictionary manaValues)
     {
-        foreach(ManaType manaType in Mana)
+        bool affordable = false;
+
+        foreach(ManaType type in manaValues.FirstValues)
         {
-            if(manaType == type)
-            {
-                manaType.amount += amount;
-            }
+            if (manaValues[type] >= PlayerMana[type])
+                affordable = false;
+            else
+                affordable = true;
         }
+
+        return affordable;
+    }
+
+    public void ModifyPlayerMana(ManaValueDictionary manaValues)
+    {
+        PlayerMana.Add(manaValues);
+        SetDominantMana();
         if (OnValueChange != null)
             OnValueChange.Invoke();
     }
